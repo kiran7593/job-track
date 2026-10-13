@@ -1,0 +1,987 @@
+
+/* ========================================
+   JobTrack — App Styles
+   ======================================== */
+
+
+/* ========================================
+   1. App Layout
+   ======================================== */
+
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.app-container header {
+  margin-bottom: 24px;
+}
+
+.app-container header h1 {
+  margin-top: 0;
+}
+
+.app-container header p {
+  margin-bottom: 0;
+}
+
+
+/* ========================================
+   2. Dashboard Summary Cards
+   ======================================== */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 0 36px;
+}
+
+.summary-card,
+.application-card {
+  padding: 20px;
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.summary-card h3 {
+  margin-top: 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.summary-count {
+  margin-bottom: 0;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.application-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.application-card h3 {
+  margin-top: 0;
+}
+
+
+/* ========================================
+   3. Application Status Badges
+   ======================================== */
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-applied {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-interview {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.status-rejected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-offer {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+
+/* ========================================
+   4. Search, Filters, and Buttons
+   ======================================== */
+
+.filter-controls {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.filter-controls input,
+.filter-controls select,
+.analytics-filter select,
+.custom-date-range input {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 14px;
+}
+
+.filter-controls input {
+  flex: 1;
+  min-width: 0;
+}
+
+.clear-filters-button {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.clear-filters-button:hover {
+  background: #f1f5f9;
+}
+
+.edit-button,
+.cancel-button {
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #334155;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit-button:hover,
+.cancel-button:hover {
+  background: #f1f5f9;
+}
+
+.delete-button {
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #be123c;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: #ffe4e6;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.theme-toggle {
+  margin-bottom: 16px;
+  padding: 10px 16px;
+  border: 1px solid #9ca3af;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+/* ========================================
+   5. Application Form
+   ======================================== */
+
+.form-section {
+  margin: 24px 0 36px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.application-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.application-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.application-form input,
+.application-form select,
+.application-form textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1f2937;
+  font: inherit;
+  font-weight: 400;
+}
+
+.application-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.application-form button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.application-form button:hover {
+  background: #1d4ed8;
+}
+
+
+/* ========================================
+   6. Analytics
+   ======================================== */
+
+.analytics-section {
+  margin: 24px 0 36px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.analytics-section h2 {
+  margin-top: 0;
+}
+
+.chart-container {
+  width: 100%;
+  height: 300px;
+}
+
+.analytics-metric {
+  margin: 0 0 20px;
+  color: #334155;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.analytics-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0 24px;
+  font-weight: 600;
+}
+
+.analytics-filter select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.custom-date-range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.custom-date-range label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.custom-date-range input {
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+
+/* ========================================
+   7. Follow-up Reminders
+   ======================================== */
+
+.follow-up-reminders {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+}
+
+.follow-up-reminders h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.follow-up-reminders > div {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.follow-up-reminders h3 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.follow-up-reminders ul {
+  padding-left: 1.25rem;
+  margin-bottom: 0;
+}
+
+.follow-up-reminders li {
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.follow-up-reminders li:last-child {
+  margin-bottom: 0;
+}
+
+.follow-up-reminders button {
+  margin-left: 0.75rem;
+  padding: 0.45rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.follow-up-reminders button:hover {
+  background: #1d4ed8;
+}
+
+.follow-up-reminders button:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+.follow-up-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.follow-up-summary p {
+  margin: 0;
+  padding: 0.85rem;
+  background: #eff6ff;
+  border-radius: 8px;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+.follow-up-summary strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 1.35rem;
+}
+
+.follow-up-note {
+  margin: 0.5rem 0;
+  color: #475569;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+
+/* ========================================
+   8. Activity History
+   ======================================== */
+
+.activity-history {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.activity-history h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.activity-history ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-history li {
+  position: relative;
+  margin-bottom: 1rem;
+  padding: 0 0 1rem 1rem;
+  border-left: 2px solid #cbd5e1;
+}
+
+.activity-history li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.activity-history li strong {
+  color: #1e3a8a;
+}
+
+.activity-history li p {
+  margin: 0.35rem 0;
+  color: #475569;
+}
+
+.activity-history li small {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+
+/* ========================================
+   9. Kanban Board
+   ======================================== */
+
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  align-items: start;
+  gap: 16px;
+  margin: 20px 0 32px;
+  overflow-x: auto;
+}
+
+.kanban-column {
+  min-width: 220px;
+  min-height: 180px;
+  padding: 14px;
+  background: #f1f5f9;
+  border: 1px solid #dbe2ea;
+  border-radius: 12px;
+}
+
+.kanban-column h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 14px;
+  font-size: 16px;
+}
+
+.kanban-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.kanban-card {
+  margin-bottom: 12px;
+  padding: 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 5%);
+}
+
+.kanban-card h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.kanban-card p {
+  margin: 5px 0 10px;
+}
+
+.kanban-card small {
+  display: block;
+  margin-bottom: 12px;
+  color: #64748b;
+}
+
+.kanban-card label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kanban-card select {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+
+.kanban-empty {
+  color: #64748b;
+  font-size: 13px;
+}
+
+
+/* ========================================
+   10. Application Calendar
+   ======================================== */
+
+.calendar-view {
+  margin: 20px 0 32px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+  margin: 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+.calendar-header button {
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border-top: 1px solid #e2e8f0;
+  border-left: 1px solid #e2e8f0;
+}
+
+.calendar-weekday {
+  padding: 10px 4px;
+  background: #f1f5f9;
+  border-right: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.calendar-day {
+  min-height: 110px;
+  padding: 6px;
+  overflow-wrap: anywhere;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 13px;
+}
+
+.calendar-empty {
+  background: #f8fafc;
+}
+
+.calendar-day > strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.calendar-event {
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.application-event {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.follow-up-event {
+  background: #dcfce7;
+  color: #166534;
+}
+
+
+/* ========================================
+   11. Light and Dark Themes
+   ======================================== */
+
+.light-mode {
+  min-height: 100vh;
+  background-color: #f5f7fb;
+  color: #1f2937;
+}
+
+.dark-mode {
+  min-height: 100vh;
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+/* General dark-mode text */
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode p,
+.dark-mode label {
+  color: #e2e8f0;
+}
+
+.dark-mode a {
+  color: #93c5fd;
+}
+
+/* Cards and major sections */
+
+.dark-mode .summary-card,
+.dark-mode .application-card,
+.dark-mode .form-section,
+.dark-mode .analytics-section,
+.dark-mode .application-form,
+.dark-mode .follow-up-reminders,
+.dark-mode .calendar-view,
+.dark-mode .kanban-card {
+  background-color: #1f2937;
+  color: #f9fafb;
+  border-color: #374151;
+}
+
+.dark-mode .summary-card h3,
+.dark-mode .application-card h3,
+.dark-mode .analytics-metric {
+  color: #e5e7eb;
+}
+
+/* Form fields */
+
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+  background-color: #374151;
+  color: #f9fafb;
+  border-color: #6b7280;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #cbd5e1;
+}
+
+.dark-mode .application-form label {
+  color: #e5e7eb;
+}
+
+.dark-mode .application-form button {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.dark-mode .application-form button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Filters and standard buttons */
+
+.dark-mode .clear-filters-button,
+.dark-mode .edit-button,
+.dark-mode .cancel-button,
+.dark-mode .calendar-header button,
+.dark-mode .theme-toggle {
+  background-color: #374151;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+
+.dark-mode .clear-filters-button:hover,
+.dark-mode .edit-button:hover,
+.dark-mode .cancel-button:hover,
+.dark-mode .calendar-header button:hover,
+.dark-mode .theme-toggle:hover {
+  background-color: #4b5563;
+}
+
+.dark-mode .delete-button {
+  background-color: #4c1d2b;
+  color: #fecdd3;
+  border-color: #881337;
+}
+
+.dark-mode .delete-button:hover {
+  background-color: #881337;
+}
+
+/* Analytics */
+
+.dark-mode .analytics-filter,
+.dark-mode .custom-date-range {
+  color: #e5e7eb;
+}
+
+.dark-mode .analytics-filter select,
+.dark-mode .custom-date-range input {
+  background-color: #374151;
+  color: #f9fafb;
+  border-color: #6b7280;
+}
+
+/* Follow-up Reminders */
+
+.dark-mode .follow-up-reminders {
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+.dark-mode .follow-up-reminders > div {
+  background-color: #273449;
+  color: #f9fafb;
+}
+
+.dark-mode .follow-up-reminders h2,
+.dark-mode .follow-up-reminders h3,
+.dark-mode .follow-up-reminders h4,
+.dark-mode .follow-up-reminders p,
+.dark-mode .follow-up-reminders span,
+.dark-mode .follow-up-reminders strong,
+.dark-mode .follow-up-reminders label,
+.dark-mode .follow-up-reminders li {
+  color: #e5e7eb;
+}
+
+.dark-mode .follow-up-reminders .follow-up-summary {
+  background-color: #334155;
+  border: 1px solid #475569;
+}
+
+.dark-mode .follow-up-reminders .follow-up-summary p {
+  background-color: #475569;
+  color: #f1f5f9;
+}
+
+.dark-mode .follow-up-reminders .follow-up-summary strong {
+  color: #ffffff;
+}
+
+.dark-mode .follow-up-note {
+  color: #cbd5e1;
+}
+
+/* Activity History */
+
+.dark-mode .activity-history {
+  background-color: #273449;
+  border-color: #374151;
+}
+
+.dark-mode .activity-history li {
+  border-left-color: #64748b;
+}
+
+.dark-mode .activity-history li strong {
+  color: #bfdbfe;
+}
+
+.dark-mode .activity-history li p {
+  color: #e5e7eb;
+}
+
+.dark-mode .activity-history li small {
+  color: #cbd5e1;
+}
+
+/* Kanban */
+
+.dark-mode .kanban-column {
+  background-color: #111827;
+  border-color: #374151;
+}
+
+.dark-mode .kanban-card {
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+.dark-mode .kanban-card small,
+.dark-mode .kanban-empty {
+  color: #cbd5e1;
+}
+
+.dark-mode .kanban-card select {
+  background-color: #374151;
+  color: #f9fafb;
+  border-color: #6b7280;
+}
+
+.dark-mode .kanban-count {
+  background-color: #374151;
+  color: #e5e7eb;
+}
+
+/* Calendar */
+
+.dark-mode .calendar-view {
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+.dark-mode .calendar-grid,
+.dark-mode .calendar-weekday,
+.dark-mode .calendar-day {
+  border-color: #374151;
+}
+
+.dark-mode .calendar-weekday {
+  background-color: #273449;
+  color: #e5e7eb;
+}
+
+.dark-mode .calendar-day {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+
+.dark-mode .calendar-empty {
+  background-color: #111827;
+}
+
+/* Darker calendar event badges */
+
+.dark-mode .application-event {
+  background-color: #1e3a5f;
+  color: #bfdbfe;
+}
+
+.dark-mode .follow-up-event {
+  background-color: #14532d;
+  color: #bbf7d0;
+}
+
+/* Darker application status badges.
+   Light-mode badge colors remain unchanged. */
+
+.dark-mode .status-applied {
+  background-color: #1e3a5f;
+  color: #bfdbfe;
+}
+
+.dark-mode .status-interview {
+  background-color: #4c1d95;
+  color: #ddd6fe;
+}
+
+.dark-mode .status-rejected {
+  background-color: #7f1d1d;
+  color: #fecaca;
+}
+
+.dark-mode .status-offer {
+  background-color: #14532d;
+  color: #bbf7d0;
+}
+
+
+/* ========================================
+   12. Responsive Layout
+   ======================================== */
+
+@media (max-width: 1000px) {
+  .kanban-board {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .application-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .follow-up-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calendar-view {
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  .calendar-grid {
+    min-width: 560px;
+  }
+
+  .calendar-day {
+    min-height: 90px;
+  }
+
+  .calendar-header h2 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .application-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 550px) {
+  .kanban-board {
+    grid-template-columns: minmax(220px, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .filter-controls {
+    flex-direction: column;
+  }
+
+  .app-container {
+    padding: 16px;
+  }
+}

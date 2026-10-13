@@ -1,0 +1,45 @@
+import type { JobApplication } from "../types/JobApplication";
+
+export const sampleApplications: JobApplication[] = [
+  {
+    id: 1,
+    company: "Northstar Digital",
+    position: "Junior Web Developer",
+    location: "New York, NY",
+    workType: "Remote",
+    dateApplied: "2026-10-06",
+    status: "Applied",
+    salary: 70000,
+    notes: "React and TypeScript role",
+  },
+  {
+    id: 2,
+    company: "Pixel Harbor",
+    position: "Front-End Developer",
+    location: "New York, NY",
+    workType: "Hybrid",
+    dateApplied: "2026-10-04",
+    status: "Interview",
+    salary: 78000,
+    notes: "Prepare JavaScript interview questions",
+  },
+  {
+    id: 3,
+    company: "Cedar Labs",
+    position: "Web Developer",
+    location: "Remote",
+    workType: "Remote",
+    dateApplied: "2026-10-02",
+    status: "Rejected",
+  },
+  {
+    id: 4,
+    company: "Blue Peak Software",
+    position: "Junior Software Developer",
+    location: "New York, NY",
+    workType: "On-site",
+    dateApplied: "2026-09-29",
+    status: "Offer",
+    salary: 82000,
+  },
+];

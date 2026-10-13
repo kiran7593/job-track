@@ -1,75 +1,131 @@
-# React + TypeScript + Vite
+# JobTrack — Job Application Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application for organizing job applications, tracking application progress, managing follow-ups, and monitoring your job search in one place.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Application Management** — Add, view, edit, and delete job applications.
+- **Application Status Tracking** — Track progress through stages such as Applied, Interview, Offer, and Rejected.
+- **Analytics Dashboard** — Review job search activity and application statistics.
+- **Kanban Board** — Visualize applications by status.
+- **Follow-Up Reminders** — Keep track of follow-up dates and outstanding tasks.
+- **Calendar View** — Review important dates and scheduled follow-ups.
+- **Activity History** — Track application-related activity.
+- **CSV Import and Export** — Import application data and export records for backup or analysis.
+- **Dark Mode** — Switch between light and dark themes.
+- **PostgreSQL Integration** — Persist application data through a backend API.
 
-## React Compiler
+## Technology Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Frontend**
+- React
+- TypeScript
+- Vite
+- HTML
+- CSS
 
-## Expanding the ESLint configuration
+**Backend**
+- Node.js
+- Express
+- REST API
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Database**
+- PostgreSQL
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**Tools**
+- Git
+- GitHub
+- npm
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
 
+Install the following before running the project:
+
+- Node.js and npm
+- PostgreSQL
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/kiran7593/job-track.git
+cd job-track
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install frontend dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
 ```
+
+### 3. Install backend dependencies
+
+```bash
+cd server
+npm install
+```
+
+### 4. Configure environment variables
+
+Create a `.env` file inside the `server` directory and add your PostgreSQL connection string:
+
+```env
+DATABASE_URL=postgresql://USERNAME:PASSWORD@localhost:5432/jobtrack
+```
+
+Replace `USERNAME` and `PASSWORD` with your local PostgreSQL credentials. Never commit your `.env` file or publish database credentials.
+
+### 5. Start the backend
+
+From the `server` directory, run:
+
+```bash
+npm start
+```
+
+The API runs at `http://localhost:5000` when using the default configuration.
+
+### 6. Start the frontend
+
+Open a second terminal in the project root and run:
+
+```bash
+npm run dev
+```
+
+Open the local URL printed by Vite in your browser.
+
+## Project Structure
+
+```text
+job-track/
+├── server/              # Express API and database connection
+├── public/              # Public assets
+├── src/
+│   ├── components/      # Dashboard and UI components
+│   ├── data/             # Sample application data
+│   ├── services/         # API integration
+│   ├── types/            # TypeScript types
+│   └── utils/            # CSV import/export utilities
+├── index.html
+├── package.json
+└── README.md
+```
+
+## Future Improvements
+
+- Deploy the frontend, backend, and database to production hosting.
+- Add user authentication and individual accounts.
+- Improve automated testing and error handling.
+
+## Author
+
+**Kiran Persaud**
+
+- GitHub: [kiran7593](https://github.com/kiran7593)
+- LinkedIn: [Kiran Persaud](https://www.linkedin.com/in/kiran-p-896a59219/)
+
+---
+
+Built as a full-stack web development portfolio project.

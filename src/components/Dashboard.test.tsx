@@ -307,5 +307,18 @@ describe("Dashboard", () => {
 	).not.toBeInTheDocument();
 
 	expect(screen.getByText("Applications (1)")).toBeInTheDocument();
+
+            await user.clear(searchInput);
+        await user.type(searchInput, "Nonexistent Company");
+
+        expect(
+            screen.queryByRole("heading", { name: "Frontend Developer" })
+        ).not.toBeInTheDocument();
+
+        expect(
+            screen.queryByRole("heading", { name: "Backend Engineer" })
+        ).not.toBeInTheDocument();
+
+        expect(screen.getByText("Applications (0)")).toBeInTheDocument();
     });
 });

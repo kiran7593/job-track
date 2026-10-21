@@ -303,7 +303,12 @@ app.delete("/api/applications/:id", async (req, res) => {
   }
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`JobTrack API running at http://localhost:${PORT}`);
-});
+// Start server only when this file is run directly
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`JobTrack API running at http://localhost:${PORT}`);
+    });
+}
+
+// Export the app for automated testing
+module.exports = app;

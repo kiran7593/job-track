@@ -52,7 +52,7 @@ describe("Dashboard", () => {
     });
 
     it("shows a loading message while applications are loading", () => {
-        mockGetApplications.mockReturnValue(new Promise(() => {}));
+        mockGetApplications.mockReturnValue(new Promise(() => { }));
 
         render(
             <Dashboard
@@ -64,6 +64,34 @@ describe("Dashboard", () => {
         expect(screen.getByRole("status")).toHaveTextContent(
             "Loading applications..."
         );
+    });
+
+
+    it("stops loading when the API request fails", async () => {
+        mockGetApplications.mockRejectedValue(
+            new Error("API request failed")
+        );
+
+        const consoleErrorSpy = vi
+            .spyOn(console, "error")
+            .mockImplementation(() => { });
+
+        render(
+            <Dashboard
+                isDarkMode={false}
+                onThemeToggle={vi.fn()}
+            />
+        );
+
+        await waitFor(() => {
+            expect(
+                screen.queryByText("Loading applications...")
+            ).not.toBeInTheDocument();
+        });
+
+        expect(mockGetApplications).toHaveBeenCalledOnce();
+
+        consoleErrorSpy.mockRestore();
     });
 
     it("displays applications returned by the API", async () => {
@@ -209,8 +237,8 @@ describe("Dashboard", () => {
         ] as JobApplication[]);
 
         vi.spyOn(window, "confirm").mockReturnValue(true);
-        vi.spyOn(window, "alert").mockImplementation(() => {});
-        vi.spyOn(console, "error").mockImplementation(() => {});
+        vi.spyOn(window, "alert").mockImplementation(() => { });
+        vi.spyOn(console, "error").mockImplementation(() => { });
 
         mockDeleteApplication.mockRejectedValue(
             new Error("Server error")
@@ -302,13 +330,13 @@ describe("Dashboard", () => {
             screen.getByRole("heading", { name: "Frontend Developer" })
         ).toBeInTheDocument();
 
-	expect(
-    	    screen.queryByRole("heading", { name: "Backend Engineer" })
-	).not.toBeInTheDocument();
+        expect(
+            screen.queryByRole("heading", { name: "Backend Engineer" })
+        ).not.toBeInTheDocument();
 
-	expect(screen.getByText("Applications (1)")).toBeInTheDocument();
+        expect(screen.getByText("Applications (1)")).toBeInTheDocument();
 
-            await user.clear(searchInput);
+        await user.clear(searchInput);
         await user.type(searchInput, "Nonexistent Company");
 
         expect(

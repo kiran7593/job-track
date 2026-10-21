@@ -1,8 +1,9 @@
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Dashboard from "./Dashboard";
-import { getApplications } from "../services/api";
+import { deleteApplication, getApplications } from "../services/api";
 import type { JobApplication } from "../types/JobApplication";
 
 vi.mock("../services/api", () => ({
@@ -41,6 +42,8 @@ vi.mock("./ApplicationForm", () => ({
 }));
 
 const mockGetApplications = vi.mocked(getApplications);
+
+const mockDeleteApplication = vi.mocked(deleteApplication);
 
 describe("Dashboard", () => {
     beforeEach(() => {
@@ -104,5 +107,136 @@ describe("Dashboard", () => {
         });
 
         expect(screen.getByText("Applications (1)")).toBeInTheDocument();
+    });
+
+    it("keeps the application when deletion is cancelled", async () => {
+        const user = userEvent.setup();
+
+        mockGetApplications.mockResolvedValue([
+            {
+                id: 1,
+                company: "Example Company",
+                position: "Frontend Developer",
+                location: "Remote",
+                workType: "Remote",
+                dateApplied: "2026-10-20",
+                status: "Applied",
+                updatedAt: "2026-10-20T12:00:00.000Z",
+                activityHistory: [],
+            },
+        ] as JobApplication[]);
+
+        vi.spyOn(window, "confirm").mockReturnValue(false);
+
+        render(
+            <Dashboard
+                isDarkMode={false}
+                onThemeToggle={vi.fn()}
+            />
+        );
+
+        await screen.findByRole("heading", {
+            name: "Frontend Developer",
+        });
+
+        await user.click(screen.getByRole("button", { name: "Delete" }));
+
+        expect(window.confirm).toHaveBeenCalledWith(
+            "Are you sure you want to delete this application?"
+        );
+        expect(mockDeleteApplication).not.toHaveBeenCalled();
+        expect(screen.getByText("Example Company")).toBeInTheDocument();
+    });
+
+    it("deletes the application after confirmation", async () => {
+        const user = userEvent.setup();
+
+        mockGetApplications.mockResolvedValue([
+            {
+                id: 1,
+                company: "Example Company",
+                position: "Frontend Developer",
+                location: "Remote",
+                workType: "Remote",
+                dateApplied: "2026-10-20",
+                status: "Applied",
+                updatedAt: "2026-10-20T12:00:00.000Z",
+                activityHistory: [],
+            },
+        ] as JobApplication[]);
+
+        vi.spyOn(window, "confirm").mockReturnValue(true);
+        mockDeleteApplication.mockResolvedValue(undefined);
+
+        render(
+            <Dashboard
+                isDarkMode={false}
+                onThemeToggle={vi.fn()}
+            />
+        );
+
+        await screen.findByRole("heading", {
+            name: "Frontend Developer",
+        });
+
+        await user.click(screen.getByRole("button", { name: "Delete" }));
+
+        await waitFor(() => {
+            expect(mockDeleteApplication).toHaveBeenCalledWith(1);
+            expect(
+                screen.queryByRole("heading", {
+                    name: "Frontend Developer",
+                })
+            ).not.toBeInTheDocument();
+        });
+    });
+
+    it("keeps the application and shows an alert when deletion fails", async () => {
+        const user = userEvent.setup();
+
+        mockGetApplications.mockResolvedValue([
+            {
+                id: 1,
+                company: "Example Company",
+                position: "Frontend Developer",
+                location: "Remote",
+                workType: "Remote",
+                dateApplied: "2026-10-20",
+                status: "Applied",
+                updatedAt: "2026-10-20T12:00:00.000Z",
+                activityHistory: [],
+            },
+        ] as JobApplication[]);
+
+        vi.spyOn(window, "confirm").mockReturnValue(true);
+        vi.spyOn(window, "alert").mockImplementation(() => {});
+        vi.spyOn(console, "error").mockImplementation(() => {});
+
+        mockDeleteApplication.mockRejectedValue(
+            new Error("Server error")
+        );
+
+        render(
+            <Dashboard
+                isDarkMode={false}
+                onThemeToggle={vi.fn()}
+            />
+        );
+
+        await screen.findByRole("heading", {
+            name: "Frontend Developer",
+        });
+
+        await user.click(screen.getByRole("button", { name: "Delete" }));
+
+        await waitFor(() => {
+            expect(window.alert).toHaveBeenCalledWith("Server error");
+        });
+
+        expect(screen.getByRole("heading", {
+            name: "Frontend Developer",
+        })).toBeInTheDocument();
+
+        expect(mockDeleteApplication).toHaveBeenCalledWith(1);
     });
 });

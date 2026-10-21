@@ -220,6 +220,28 @@ describe("PUT /api/applications/:id", () => {
         expect(pool.query).toHaveBeenCalledTimes(1);
     });
 
+
+    it("rejects an invalid application ID", async () => {
+        const response = await request(app)
+            .put("/api/applications/abc")
+            .send({
+                company: "Example Company",
+                position: "Junior Developer",
+                location: "New York",
+                workType: "Remote",
+                dateApplied: "2026-10-20",
+                status: "Applied",
+            });
+
+        expect(response.status).toBe(400);
+        expect(response.body).toEqual({
+            success: false,
+            message: "Invalid application ID.",
+        });
+        expect(pool.query).not.toHaveBeenCalled();
+    });
+
+
     it("returns 404 when the application does not exist", async () => {
         pool.query.mockResolvedValueOnce({
             rows: [],

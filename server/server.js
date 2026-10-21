@@ -13,16 +13,16 @@ app.use(express.json());
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
-    res.json({
-        success: true,
-        message: "JobTrack API is running!",
-    });
+  res.json({
+    success: true,
+    message: "JobTrack API is running!",
+  });
 });
 
 // Get all job applications
 app.get("/api/applications", async (req, res) => {
-    try {
-        const result = await pool.query(`
+  try {
+    const result = await pool.query(`
       SELECT
         id,
         company,
@@ -43,21 +43,21 @@ app.get("/api/applications", async (req, res) => {
       ORDER BY date_applied DESC, id DESC
     `);
 
-        res.json({
-            success: true,
-            data: result.rows,
-        });
-    } catch (error) {
-        console.error("Failed to fetch applications:", error);
+    res.json({
+      success: true,
+      data: result.rows,
+    });
+  } catch (error) {
+    console.error("Failed to fetch applications:", error);
 
-        res.status(500).json({
-            success: false,
-            message: "Failed to retrieve job applications.",
-        });
-    }
+    res.status(500).json({
+      success: false,
+      message: "Failed to retrieve job applications.",
+    });
+  }
 });
 
- // Create a new job application
+// Create a new job application
 app.post("/api/applications", async (req, res) => {
   const {
     company,
@@ -160,9 +160,16 @@ app.post("/api/applications", async (req, res) => {
   }
 });
 
- // Update an existing job application
+// Update an existing job application
 app.put("/api/applications/:id", async (req, res) => {
   const { id } = req.params;
+
+  if (!/^\d+$/.test(id) || Number(id) <= 0) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid application ID.",
+    });
+  }
 
   const {
     company,
@@ -269,7 +276,7 @@ app.put("/api/applications/:id", async (req, res) => {
   }
 });
 
- // Delete an existing job application
+// Delete an existing job application
 app.delete("/api/applications/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -312,9 +319,9 @@ app.delete("/api/applications/:id", async (req, res) => {
 
 // Start server only when this file is run directly
 if (require.main === module) {
-    app.listen(PORT, () => {
-        console.log(`JobTrack API running at http://localhost:${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`JobTrack API running at http://localhost:${PORT}`);
+  });
 }
 
 // Export the app for automated testing

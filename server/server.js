@@ -273,6 +273,13 @@ app.put("/api/applications/:id", async (req, res) => {
 app.delete("/api/applications/:id", async (req, res) => {
   const { id } = req.params;
 
+  if (!/^\d+$/.test(id) || Number(id) <= 0) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid application ID.",
+    });
+  }
+
   try {
     const result = await pool.query(
       `DELETE FROM applications

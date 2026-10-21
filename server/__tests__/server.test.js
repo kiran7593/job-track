@@ -287,6 +287,18 @@ describe("DELETE /api/applications/:id", () => {
         expect(pool.query).toHaveBeenCalledTimes(1);
     });
 
+    it("rejects an invalid application ID", async () => {
+        const response = await request(app)
+            .delete("/api/applications/abc");
+
+        expect(response.status).toBe(400);
+        expect(response.body).toEqual({
+            success: false,
+            message: "Invalid application ID.",
+        });
+        expect(pool.query).not.toHaveBeenCalled();
+    });
+
     it("returns 404 when the application does not exist", async () => {
         pool.query.mockResolvedValueOnce({
             rows: [],

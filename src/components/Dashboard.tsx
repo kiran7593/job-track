@@ -1,10 +1,10 @@
-
 import ApplicationDetails from "./ApplicationDetails";
-import Analytics from "./Analytics";
+import { lazy, Suspense, useEffect, useState } from "react";
+
+const Analytics = lazy(() => import("./Analytics"));
 import EditApplicationForm from "./EditApplicationForm";
 import ApplicationForm from "./ApplicationForm";
 import type { JobApplication } from "../types/JobApplication";
-import { useEffect, useState } from "react";
 import { sampleApplications } from "../data/sampleApplications";
 import FollowUpReminders from "./FollowUpReminders";
 import { exportApplicationsToCSV } from "../utils/exportApplications";
@@ -468,7 +468,9 @@ function Dashboard({ isDarkMode, onThemeToggle }: DashboardProps) {
                 }}
             />
 
-            <Analytics applications={applications} />
+            <Suspense fallback={<p>Loading analytics...</p>}>
+                <Analytics applications={applications} />
+            </Suspense>
 
             <FollowUpReminders
                 applications={applications}

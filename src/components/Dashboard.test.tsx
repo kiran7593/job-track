@@ -239,4 +239,73 @@ describe("Dashboard", () => {
 
         expect(mockDeleteApplication).toHaveBeenCalledWith(1);
     });
+
+    it("filters applications by company or position", async () => {
+        const user = userEvent.setup();
+
+        mockGetApplications.mockResolvedValue([
+            {
+                id: 1,
+                company: "Acme Corporation",
+                position: "Frontend Developer",
+                location: "Remote",
+                workType: "Remote",
+                dateApplied: "2026-10-20",
+                status: "Applied",
+                updatedAt: "2026-10-20T12:00:00.000Z",
+                activityHistory: [],
+            },
+            {
+                id: 2,
+                company: "Bright Labs",
+                position: "Backend Engineer",
+                location: "New York",
+                workType: "Hybrid",
+                dateApplied: "2026-10-19",
+                status: "Interview",
+                updatedAt: "2026-10-19T12:00:00.000Z",
+                activityHistory: [],
+            },
+        ] as JobApplication[]);
+
+        render(
+            <Dashboard
+                isDarkMode={false}
+                onThemeToggle={vi.fn()}
+            />
+        );
+
+        await screen.findByRole("heading", {
+            name: "Frontend Developer",
+        });
+
+        const searchInput = screen.getByPlaceholderText(
+            "Search company or position..."
+        );
+
+        await user.type(searchInput, "Bright");
+
+        expect(
+            screen.getByRole("heading", { name: "Backend Engineer" })
+        ).toBeInTheDocument();
+
+        expect(
+            screen.queryByRole("heading", { name: "Frontend Developer" })
+        ).not.toBeInTheDocument();
+
+        expect(screen.getByText("Applications (1)")).toBeInTheDocument();
+
+        await user.clear(searchInput);
+        await user.type(searchInput, "Frontend Developer");
+
+        expect(
+            screen.getByRole("heading", { name: "Frontend Developer" })
+        ).toBeInTheDocument();
+
+	expect(
+    	    screen.queryByRole("heading", { name: "Backend Engineer" })
+	).not.toBeInTheDocument();
+
+	expect(screen.getByText("Applications (1)")).toBeInTheDocument();
+    });
 });

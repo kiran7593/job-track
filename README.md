@@ -2,6 +2,10 @@
 
 A full-stack web application for organizing job applications, tracking application progress, managing follow-ups, and monitoring your job search in one place.
 
+## Screenshots
+
+![JobTrack Dashboard](./screenshots/screenshot-dashboard.png)
+
 ## Features
 
 - **Application Management** — Add, view, edit, and delete job applications.
